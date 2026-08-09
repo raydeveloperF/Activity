@@ -82,14 +82,6 @@ struct ContentView: View {
                 
             }
             .toolbar {
-                ToolbarItem(placement: .keyboard) {
-                    Button {
-                        isFocused = false
-                    } label: {
-                        Image(systemName: "keyboard.chevron.compact.down")
-                    }
-                }
-                
                 if activityViewModel.isShowSettingView {
                     ToolbarItem(placement: .automatic) {
                         NavigationLink {
@@ -181,6 +173,10 @@ extension ContentView {
             if #available(iOS 26.0, *) {
                 TextField("Hello!", text: $title)
                     .focused($isFocused)
+                    .submitLabel(.done)
+                    .onSubmit {
+                        isFocused = false
+                    }
                     .padding()
                     .frame(maxWidth: .infinity)
                     .glassEffect(.regular, in: .capsule)
@@ -189,6 +185,10 @@ extension ContentView {
             } else {
                 TextField("Hello!", text: $title)
                     .focused($isFocused)
+                    .submitLabel(.done)
+                    .onSubmit {
+                        isFocused = false
+                    }
                     .padding()
                     .frame(maxWidth: .infinity)
                     .background(.ultraThinMaterial, in: .capsule)
@@ -394,7 +394,6 @@ extension ContentView {
     
     
 }
-
 
 
 

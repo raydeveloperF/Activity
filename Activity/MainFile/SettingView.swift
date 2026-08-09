@@ -8,132 +8,90 @@
 import SwiftUI
 
 struct SettingView: View {
-    
-    @Environment(ActivityViewModel.self) var activityViewModel
-    @State private var isShowingAddNewNotificationTimeIntervalSheet: Bool = false
-    @State private var newTimeInterval: Double = 15.0 * 60 {
-        didSet {
-            debugLog(newTimeInterval.description)
-        }
-    }
-    
+    @Environment(ActivityViewModel.self) private var activityViewModel
+    @State private var isShowingAddNewNotificationTimeIntervalSheet = false
+    @State private var newTimeInterval: Double = 15 * 60
+
     var body: some View {
-        
         @Bindable var activityViewModel = activityViewModel
-        
-        NavigationStack {
-            ScrollView {
-                VStack(alignment: .leading, spacing: 40) {
-                    VStack(alignment: .leading) {
-                        Toggle(isOn: $activityViewModel.isShowSettingView) {
-                            Text("在主页面展示设置入口")
+
+        List {
+            Section {
+                Toggle("在主页面展示设置入口", isOn: $activityViewModel.isShowSettingView)
+            } header: {
+                Text("通用")
+            } footer: {
+                Text("如果你关闭此功能，在主页将不再显示设置按钮，如果你想再次进入设置页面（也就是本页面），请长按主页的任意区域")
+            }
+
+            Section {
+                Toggle("开启通知", isOn: $activityViewModel.hasNotification)
+
+                if activityViewModel.hasNotification {
+                    ForEach(activityViewModel.notificationTimeIntervals.indices, id: \.self) { index in
+                        let minutes = Int(activityViewModel.notificationTimeIntervals[index]) / 60
+
+                        HStack {
+                            Text(minutes.formatted(.number))
+                                .bold()
+                            Text("分钟")
                         }
-                        .padding()
-                        .background(.secondary.opacity(0.4), in: .capsule)
-                        
-                        Text("如果你关闭此功能，在主页将不再显示设置按钮，如果你想再次进入设置页面（也就是本页面），请长按主页的任意区域")
-                            .font(.subheadline)
-                            .foregroundStyle(.primary.opacity(0.6))
-                            .padding(.horizontal)
                     }
-                    .padding(.top)
-                    
-                    VStack(alignment: .leading) {
-                        VStack(alignment: .leading) {
-                            Toggle(isOn: $activityViewModel.hasNotification) {
-                                Text("开启通知")
-                            }
-                            .padding(.bottom, activityViewModel.hasNotification ? 12 : 0)
-                            
-                            if activityViewModel.hasNotification {
-                                Group {
-                                    ForEach(activityViewModel.notificationTimeIntervals, id: \.self) { timeInterval in
-                                        VStack {
-                                            HStack {
-                                                let time = Int(timeInterval) / 60
-                                                Text(time.formatted(.number))
-                                                    .bold()
-                                                Text("分钟")
-                                            }
-                                        }
-                                        .padding(.vertical, 8)
-                                        .frame(maxWidth: .infinity)
-                                        .contentShape(.containerRelative)
-                                        .contextMenu {
-                                            Button {
-                                                Task {
-                                                    withAnimation(.bouncy) {
-                                                        delete(timeInterval: timeInterval)
-                                                        activityViewModel.sortNotificationTimeIntervals()
-                                                    }
-                                                    await activityViewModel.refreshNotification()
-                                                }
-                                            } label: {
-                                                Label("Delete", systemImage: "trash")
-                                            }
-                                        }
-                                    }
-                                    
-                                    AddNewNotificationTimeIntervalButton
-                                }
-                            }
-                        }
-                        .padding()
-                        .background(.secondary.opacity(0.4))
-                        .clipShape(RoundedRectangle(cornerRadius: 29))
-                        .animation(.smooth, value: activityViewModel.hasNotification)
-                        
-                        Group {
-                            Text("你可以添加任意多个提前提醒，这些时间代表App会在你设定的时间前多长时间给你发送通知。")
-                            Text("你可以长按这些时间以删除。")
-                        }
-                        .font(.subheadline)
-                        .foregroundStyle(.primary.opacity(0.6))
-                        .padding(.horizontal)
-                        .animation(.smooth, value: activityViewModel.hasNotification)
+                    .onDelete(perform: deleteNotificationTimeIntervals)
+
+                    addNotificationButton
+                }
+            } header: {
+                Text("通知")
+            } footer: {
+                if activityViewModel.hasNotification {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("你可以添加任意多个提前提醒，这些时间代表App会在你设定的时间前多长时间给你发送通知。")
+                        Text("向左轻扫提醒时间即可删除。")
                     }
                 }
-                .padding()
             }
-            .navigationTitle("Setting")
-            .sheet(isPresented: $isShowingAddNewNotificationTimeIntervalSheet) {
-                AddNewNotificationTimeIntervalSheet
-                    .presentationDetents([.medium])
+
+            Section("支持与关注") {
+                Link(destination: URL(string: "https://apps.apple.com/app/id6754206929?action=write-review")!) {
+                    Label("在 App Store 评分", systemImage: "star")
+                }
+
+                Link(destination: URL(string: "https://xhslink.cn/m/3uP6VrkOZK3")!) {
+                    Label("小红书", systemImage: "heart.text.square")
+                }
+
+                Link(destination: URL(string: "https://github.com/raydeveloperF")!) {
+                    Label("GitHub", systemImage: "chevron.left.forwardslash.chevron.right")
+                }
             }
+        }
+        .listStyle(.insetGrouped)
+        .navigationTitle("Setting")
+        .sheet(isPresented: $isShowingAddNewNotificationTimeIntervalSheet) {
+            addNotificationSheet
+                .presentationDetents([.medium])
         }
     }
 }
 
-
-
 extension SettingView {
-    
-    private func delete(timeInterval: TimeInterval) {
-        activityViewModel.notificationTimeIntervals.removeAll { $0 == timeInterval }
-    }
-    
-    @ViewBuilder
-    private var AddNewNotificationTimeIntervalButton: some View {
-        if #available(iOS 26.0, *) {
-            Button {
-                isShowingAddNewNotificationTimeIntervalSheet = true
-            } label: {
-                Image(systemName: "plus.app")
-                    .padding(5)
-            }
-            .buttonStyle(.glass)
-        } else {
-            Button {
-                isShowingAddNewNotificationTimeIntervalSheet = true
-            } label: {
-                Image(systemName: "plus.app")
-                    .padding(5)
-            }
-            .buttonStyle(.bordered)
+    private func deleteNotificationTimeIntervals(at offsets: IndexSet) {
+        activityViewModel.notificationTimeIntervals.remove(atOffsets: offsets)
+        Task {
+            await activityViewModel.refreshNotification()
         }
     }
-    
-    private var AddNewNotificationTimeIntervalSheet: some View {
+
+    private var addNotificationButton: some View {
+        Button {
+            isShowingAddNewNotificationTimeIntervalSheet = true
+        } label: {
+            Label("添加提醒", systemImage: "plus")
+        }
+    }
+
+    private var addNotificationSheet: some View {
         VStack {
             Picker("Select", selection: $newTimeInterval) {
                 ForEach(1...60, id: \.self) { index in
@@ -142,55 +100,33 @@ extension SettingView {
                 }
             }
             .pickerStyle(.wheel)
-            
-            Group {
-                if #available(iOS 26.0, *) {
-                    Button {
-                        isShowingAddNewNotificationTimeIntervalSheet = false
-                        Task {
-                            withAnimation(.bouncy) {
-                                activityViewModel.notificationTimeIntervals.append(newTimeInterval)
-                                activityViewModel.sortNotificationTimeIntervals()
-                            }
-                            await activityViewModel.refreshNotification()
-                        }
-                    } label: {
-                        Text("Add")
-                            .padding(.vertical, 8)
-                            .frame(maxWidth: .infinity)
+
+            Button {
+                isShowingAddNewNotificationTimeIntervalSheet = false
+                Task {
+                    withAnimation(.bouncy) {
+                        activityViewModel.notificationTimeIntervals.append(newTimeInterval)
+                        activityViewModel.sortNotificationTimeIntervals()
                     }
-                    .buttonStyle(.glassProminent)
-                    .padding(.vertical, 24)
-                } else {
-                    Button {
-                        isShowingAddNewNotificationTimeIntervalSheet = false
-                        Task {
-                            withAnimation(.bouncy) {
-                                activityViewModel.notificationTimeIntervals.append(newTimeInterval)
-                                activityViewModel.sortNotificationTimeIntervals()
-                            }
-                            await activityViewModel.refreshNotification()
-                        }
-                    } label: {
-                        Text("Add")
-                            .padding(.vertical, 8)
-                            .frame(maxWidth: .infinity)
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .padding(.vertical, 24)
+                    await activityViewModel.refreshNotification()
                 }
+            } label: {
+                Text("Add")
+                    .padding(.vertical, 8)
+                    .frame(maxWidth: .infinity)
             }
+            .buttonStyle(.borderedProminent)
             .padding(.horizontal, 30)
+            .padding(.vertical, 24)
         }
         .padding(.horizontal)
     }
-    
 }
-
-
 
 #Preview {
     var viewModel = ActivityViewModel()
-    SettingView()
-        .environment(viewModel)
+    NavigationStack {
+        SettingView()
+            .environment(viewModel)
+    }
 }
