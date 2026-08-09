@@ -10,6 +10,7 @@ import SwiftUI
 import SwiftData
 import EventKit
 import ActivityKit
+import StoreKit
 
 final class DynamicIslandImageOnly {
     
@@ -30,6 +31,7 @@ struct BezierCurve {
 struct ContentView: View {
     
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.requestReview) private var requestReview
     @Environment(ActivityViewModel.self) var activityViewModel
     
     @State private var rotateAngle: Double = 0.0
@@ -38,6 +40,7 @@ struct ContentView: View {
     @AppStorage("storaged_title") var storagedTitle: String = "Hi"
     @State private var time: Date = .now - 1
     @AppStorage("storaged_time") var storagedTime: Date = .now - 1
+    @AppStorage("successful_live_activity_count") private var successfulLiveActivityCount = 0
     
     @FocusState private var isFocused: Bool
     
@@ -81,6 +84,12 @@ struct ContentView: View {
                 }
                 
             }
+            .contentShape(Rectangle())
+            .onLongPressGesture {
+                if !activityViewModel.isShowSettingView {
+                    isShowingNavigationDestination = true
+                }
+            }
             .toolbar {
                 if activityViewModel.isShowSettingView {
                     ToolbarItem(placement: .automatic) {
@@ -94,11 +103,6 @@ struct ContentView: View {
             }
             .navigationDestination(isPresented: $isShowingNavigationDestination) {
                 SettingView()
-            }
-        }
-        .onLongPressGesture {
-            if !activityViewModel.isShowSettingView {
-                isShowingNavigationDestination = true
             }
         }
         .task {
@@ -239,7 +243,7 @@ extension ContentView {
                             if title != "" {
                                 activityViewModel.isActivity = true
                                 if time.timeIntervalSince(.now) > 0 {
-                                    LiveActivityManager.shared.startActivity(imageSystemName: imageSystemName, content: title, time: time)
+                                    startLiveActivity()
                                     
                                     if activityViewModel.hasNotification {
                                         Task {
@@ -247,7 +251,7 @@ extension ContentView {
                                         }
                                     }
                                 } else {
-                                    LiveActivityManager.shared.startActivity(imageSystemName: imageSystemName, content: title, time: time)
+                                    startLiveActivity()
                                 }
                             }
                         }
@@ -279,7 +283,7 @@ extension ContentView {
                             if title != "" {
                                 activityViewModel.isActivity = true
                                 if time.timeIntervalSince(.now) > 0 {
-                                    LiveActivityManager.shared.startActivity(imageSystemName: imageSystemName, content: title, time: time)
+                                    startLiveActivity()
                                     
                                     if activityViewModel.hasNotification {
                                         Task {
@@ -287,12 +291,28 @@ extension ContentView {
                                         }
                                     }
                                 } else {
-                                    LiveActivityManager.shared.startActivity(imageSystemName: imageSystemName, content: title, time: time)
+                                    startLiveActivity()
                                 }
                             }
                         }
                     }
                 }
+        }
+    }
+
+    private func startLiveActivity() {
+        guard LiveActivityManager.shared.startActivity(
+            imageSystemName: imageSystemName,
+            content: title,
+            time: time
+        ) else { return }
+
+        successfulLiveActivityCount += 1
+        guard [10, 30, 50, 100].contains(successfulLiveActivityCount) else { return }
+
+        Task {
+            try? await Task.sleep(for: .seconds(2))
+            requestReview()
         }
     }
     
@@ -394,6 +414,3 @@ extension ContentView {
     
     
 }
-
-
-

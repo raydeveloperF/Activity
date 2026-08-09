@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingView: View {
     @Environment(ActivityViewModel.self) private var activityViewModel
+    @Environment(\.openURL) private var openURL
     @State private var isShowingAddNewNotificationTimeIntervalSheet = false
     @State private var newTimeInterval: Double = 15 * 60
 
@@ -25,7 +26,7 @@ struct SettingView: View {
             }
 
             Section {
-                Toggle("开启通知", isOn: $activityViewModel.hasNotification)
+                Toggle("开启通知", isOn: $activityViewModel.hasNotification.animation(.smooth))
 
                 if activityViewModel.hasNotification {
                     ForEach(activityViewModel.notificationTimeIntervals.indices, id: \.self) { index in
@@ -57,12 +58,22 @@ struct SettingView: View {
                     Label("在 App Store 评分", systemImage: "star")
                 }
 
-                Link(destination: URL(string: "https://xhslink.cn/m/3uP6VrkOZK3")!) {
+                Button {
+                    openURL(URL(string: "xhsdiscover://user/68e906680000000030032636")!) { accepted in
+                        if !accepted {
+                            openURL(URL(string: "https://xhslink.cn/m/3uP6VrkOZK3")!)
+                        }
+                    }
+                } label: {
                     Label("小红书", systemImage: "heart.text.square")
                 }
 
                 Link(destination: URL(string: "https://github.com/raydeveloperF")!) {
                     Label("GitHub", systemImage: "chevron.left.forwardslash.chevron.right")
+                }
+
+                Link(destination: URL(string: "https://leorokon.com")!) {
+                    Label("个人网站", systemImage: "globe")
                 }
             }
         }

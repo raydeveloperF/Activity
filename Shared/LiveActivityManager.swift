@@ -30,7 +30,8 @@ final class LiveActivityManager {
     var currentActivity: Activity<IslandAttributes>?
     
 
-    func startActivity(imageSystemName: String, content: String, time: Date?) {
+    @discardableResult
+    func startActivity(imageSystemName: String, content: String, time: Date?) -> Bool {
         
         var returnedTime: Date? = nil
         if let time {
@@ -51,8 +52,10 @@ final class LiveActivityManager {
             )
             currentActivity = activity
             debugLog("✅ Live Activity 创建成功：\(activity.id)")
+            return true
         } catch {
             debugLog("❌ 创建失败：\(error)")
+            return false
         }
     }
 
