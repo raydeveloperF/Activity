@@ -9,33 +9,20 @@
 /* Begin PBXBuildFile section */
 		139C90CC2EC0462600AEA569 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 139C90CB2EC0462600AEA569 /* Localizable.xcstrings */; };
 		139C90CD2EC0462600AEA569 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 139C90CB2EC0462600AEA569 /* Localizable.xcstrings */; };
-		139C90CE2EC0462600AEA569 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 139C90CB2EC0462600AEA569 /* Localizable.xcstrings */; };
-		13A4595A2EA37F3200B03E53 /* AppIntentsForActivity.appex in Embed ExtensionKit Extensions */ = {isa = PBXBuildFile; fileRef = 13A459512EA37F3200B03E53 /* AppIntentsForActivity.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		13A45B5C2EA5143200B03E53 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A45B502EA5143200B03E53 /* LiveActivityManager.swift */; };
-		13A45B8C2EA5261400B03E53 /* IslandAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F58A7A2E9DDC2A0047C84E /* IslandAttributes.swift */; };
-		13A45B8D2EA5262200B03E53 /* LiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A45B502EA5143200B03E53 /* LiveActivityManager.swift */; };
 		13BE24522ECD9E2700A9B882 /* ShareForActivity.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 13BE24482ECD9E2700A9B882 /* ShareForActivity.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		13BE245D2ECDA99000A9B882 /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D303D12EBDFC8900B97F96 /* DebugLog.swift */; };
 		13BE245F2ECDAB9D00A9B882 /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BE245E2ECDAB9500A9B882 /* UserDefaultKey.swift */; };
 		13BE24602ECDAB9D00A9B882 /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BE245E2ECDAB9500A9B882 /* UserDefaultKey.swift */; };
 		13BE24612ECDAB9D00A9B882 /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BE245E2ECDAB9500A9B882 /* UserDefaultKey.swift */; };
-		13BE24622ECDAB9D00A9B882 /* UserDefaultKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13BE245E2ECDAB9500A9B882 /* UserDefaultKey.swift */; };
 		13D303D22EBDFC8900B97F96 /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D303D12EBDFC8900B97F96 /* DebugLog.swift */; };
 		13D303D32EBDFC8900B97F96 /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D303D12EBDFC8900B97F96 /* DebugLog.swift */; };
-		13D303D42EBDFC8900B97F96 /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13D303D12EBDFC8900B97F96 /* DebugLog.swift */; };
 		13F58A6B2E9DD83E0047C84E /* WidgetForActivityExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 13F58A552E9DD83D0047C84E /* WidgetForActivityExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		13F58A7B2E9DDC4E0047C84E /* IslandAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F58A7A2E9DDC2A0047C84E /* IslandAttributes.swift */; };
 		13F58A7C2E9DDC4E0047C84E /* IslandAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F58A7A2E9DDC2A0047C84E /* IslandAttributes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		13A459582EA37F3200B03E53 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 13F58A1F2E9DD80F0047C84E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 13A459502EA37F3200B03E53;
-			remoteInfo = AppIntentsForActivity;
-		};
 		13BE24502ECD9E2700A9B882 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 13F58A1F2E9DD80F0047C84E /* Project object */;
@@ -67,17 +54,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		13A4595F2EA37F3200B03E53 /* Embed ExtensionKit Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(EXTENSIONS_FOLDER_PATH)";
-			dstSubfolderSpec = 16;
-			files = (
-				13A4595A2EA37F3200B03E53 /* AppIntentsForActivity.appex in Embed ExtensionKit Extensions */,
-			);
-			name = "Embed ExtensionKit Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13F58A702E9DD83E0047C84E /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -95,7 +71,6 @@
 /* Begin PBXFileReference section */
 		1376BBF62EA9A4DF004F2C06 /* WidgetForActivityExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetForActivityExtension.entitlements; sourceTree = "<group>"; };
 		139C90CB2EC0462600AEA569 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		13A459512EA37F3200B03E53 /* AppIntentsForActivity.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.extensionkit-extension"; includeInIndex = 0; path = AppIntentsForActivity.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		13A45B502EA5143200B03E53 /* LiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityManager.swift; sourceTree = "<group>"; };
 		13BE24482ECD9E2700A9B882 /* ShareForActivity.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ShareForActivity.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		13BE245E2ECDAB9500A9B882 /* UserDefaultKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultKey.swift; sourceTree = "<group>"; };
@@ -116,13 +91,6 @@
 			);
 			target = 13F58A262E9DD80F0047C84E /* Activity */;
 		};
-		13A4595E2EA37F3200B03E53 /* Exceptions for "AppIntentsForActivity" folder in "AppIntentsForActivity" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 13A459502EA37F3200B03E53 /* AppIntentsForActivity */;
-		};
 		13BE24562ECD9E2700A9B882 /* Exceptions for "ShareForActivity" folder in "ShareForActivity" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -140,14 +108,6 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		13A459522EA37F3200B03E53 /* AppIntentsForActivity */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				13A4595E2EA37F3200B03E53 /* Exceptions for "AppIntentsForActivity" folder in "AppIntentsForActivity" target */,
-			);
-			path = AppIntentsForActivity;
-			sourceTree = "<group>";
-		};
 		13BE24492ECD9E2700A9B882 /* ShareForActivity */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -185,13 +145,6 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		13A4594E2EA37F3200B03E53 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13BE24452ECD9E2700A9B882 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -239,7 +192,6 @@
 				13F58A372E9DD8100047C84E /* ActivityTests */,
 				13F58A412E9DD8100047C84E /* ActivityUITests */,
 				13F58A5B2E9DD83D0047C84E /* WidgetForActivity */,
-				13A459522EA37F3200B03E53 /* AppIntentsForActivity */,
 				13F58A592E9DD83D0047C84E /* SwiftUI.framework */,
 				1376BBF62EA9A4DF004F2C06 /* WidgetForActivityExtension.entitlements */,
 				13BE24492ECD9E2700A9B882 /* ShareForActivity */,
@@ -254,7 +206,6 @@
 				13F58A342E9DD8100047C84E /* ActivityTests.xctest */,
 				13F58A3E2E9DD8100047C84E /* ActivityUITests.xctest */,
 				13F58A552E9DD83D0047C84E /* WidgetForActivityExtension.appex */,
-				13A459512EA37F3200B03E53 /* AppIntentsForActivity.appex */,
 				13BE24482ECD9E2700A9B882 /* ShareForActivity.appex */,
 			);
 			name = Products;
@@ -274,28 +225,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		13A459502EA37F3200B03E53 /* AppIntentsForActivity */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 13A4595B2EA37F3200B03E53 /* Build configuration list for PBXNativeTarget "AppIntentsForActivity" */;
-			buildPhases = (
-				13A4594D2EA37F3200B03E53 /* Sources */,
-				13A4594E2EA37F3200B03E53 /* Frameworks */,
-				13A4594F2EA37F3200B03E53 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				13A459522EA37F3200B03E53 /* AppIntentsForActivity */,
-			);
-			name = AppIntentsForActivity;
-			packageProductDependencies = (
-			);
-			productName = AppIntentsForActivity;
-			productReference = 13A459512EA37F3200B03E53 /* AppIntentsForActivity.appex */;
-			productType = "com.apple.product-type.extensionkit-extension";
-		};
 		13BE24472ECD9E2700A9B882 /* ShareForActivity */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13BE24552ECD9E2700A9B882 /* Build configuration list for PBXNativeTarget "ShareForActivity" */;
@@ -326,13 +255,11 @@
 				13F58A242E9DD80F0047C84E /* Frameworks */,
 				13F58A252E9DD80F0047C84E /* Resources */,
 				13F58A702E9DD83E0047C84E /* Embed Foundation Extensions */,
-				13A4595F2EA37F3200B03E53 /* Embed ExtensionKit Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				13F58A6A2E9DD83E0047C84E /* PBXTargetDependency */,
-				13A459592EA37F3200B03E53 /* PBXTargetDependency */,
 				13BE24512ECD9E2700A9B882 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
@@ -423,9 +350,6 @@
 				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 2610;
 				TargetAttributes = {
-					13A459502EA37F3200B03E53 = {
-						CreatedOnToolsVersion = 26.1;
-					};
 					13BE24472ECD9E2700A9B882 = {
 						CreatedOnToolsVersion = 26.2;
 					};
@@ -463,21 +387,12 @@
 				13F58A332E9DD8100047C84E /* ActivityTests */,
 				13F58A3D2E9DD8100047C84E /* ActivityUITests */,
 				13F58A542E9DD83D0047C84E /* WidgetForActivityExtension */,
-				13A459502EA37F3200B03E53 /* AppIntentsForActivity */,
 				13BE24472ECD9E2700A9B882 /* ShareForActivity */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		13A4594F2EA37F3200B03E53 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				139C90CE2EC0462600AEA569 /* Localizable.xcstrings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13BE24462ECD9E2700A9B882 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -518,17 +433,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		13A4594D2EA37F3200B03E53 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				13A45B8C2EA5261400B03E53 /* IslandAttributes.swift in Sources */,
-				13BE24622ECDAB9D00A9B882 /* UserDefaultKey.swift in Sources */,
-				13A45B8D2EA5262200B03E53 /* LiveActivityManager.swift in Sources */,
-				13D303D42EBDFC8900B97F96 /* DebugLog.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13BE24442ECD9E2700A9B882 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -576,11 +480,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		13A459592EA37F3200B03E53 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 13A459502EA37F3200B03E53 /* AppIntentsForActivity */;
-			targetProxy = 13A459582EA37F3200B03E53 /* PBXContainerItemProxy */;
-		};
 		13BE24512ECD9E2700A9B882 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 13BE24472ECD9E2700A9B882 /* ShareForActivity */;
@@ -604,77 +503,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		13A4595C2EA37F3200B03E53 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = AppIntentsForActivity/AppIntentsForActivity.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z4ZAQ6P4V8;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AppIntentsForActivity/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AppIntentsForActivity;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Ray.Activity.AppIntentsForActivity;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		13A4595D2EA37F3200B03E53 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = AppIntentsForActivity/AppIntentsForActivity.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = Z4ZAQ6P4V8;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = AppIntentsForActivity/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = AppIntentsForActivity;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Ray.Activity.AppIntentsForActivity;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
-				SUPPORTS_MACCATALYST = NO;
-				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		13BE24532ECD9E2700A9B882 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1142,15 +970,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		13A4595B2EA37F3200B03E53 /* Build configuration list for PBXNativeTarget "AppIntentsForActivity" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				13A4595C2EA37F3200B03E53 /* Debug */,
-				13A4595D2EA37F3200B03E53 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		13BE24552ECD9E2700A9B882 /* Build configuration list for PBXNativeTarget "ShareForActivity" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
