@@ -64,7 +64,9 @@ struct ContentView: View {
                     Spacer()
                     
                     DatePickerSection
+                        .opacity(isFocused ? 0 : 1)
                         .allowsHitTesting(!isFocused)
+                        .accessibilityHidden(isFocused)
                     
                     Spacer()
                     Spacer()
@@ -82,6 +84,7 @@ struct ContentView: View {
                     Spacer()
                     Spacer()
                 }
+                .animation(customEase, value: isFocused)
                 
             }
             .contentShape(Rectangle())
